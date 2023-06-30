@@ -1,0 +1,50 @@
+ProjectName= Project
+BuildFile= C:\Busy\NeHeLessonsIn4th\_NeHeLessonsIn4th.f
+SearchPath= C:\Busy\NeHeLessonsIn4th
+Project,0
+Modules,39
+C:\Busy\NeHeLessonsIn4th\_NeHeLessonsIn4th.f
+C:\Busy\NeHeLessonsIn4th\Opengl.f
+C:\Busy\NeHeLessonsIn4th\oglevts.f
+C:\Busy\NeHeLessonsIn4th\bmpdot.f
+C:\Busy\NeHeLessonsIn4th\palette.f
+C:\Busy\NeHeLessonsIn4th\gldefs.f
+C:\Busy\NeHeLessonsIn4th\bmpio.f
+C:\Busy\NeHeLessonsIn4th\pixelfrm.f
+C:\Busy\NeHeLessonsIn4th\fullscreen.f
+C:\Busy\NeHeLessonsIn4th\Oglwin.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.02.f
+C:\Busy\NeHeLessonsIn4th\OpenGlLessons.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.03.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.04.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.05.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.06.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.07.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.08.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.09.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.10.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.12.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.11.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.13.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.16.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.17.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.18.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.19.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.20.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.21.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.23.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.24.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.25.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.26.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.27.f
+C:\Busy\NeHeLessonsIn4th\HelpForm.f
+C:\Busy\NeHeLessonsIn4th\AskIntWindow.f
+C:\Busy\NeHeLessonsIn4th\IntroScreen.f
+C:\Busy\NeHeLessonsIn4th\WaitableTimer.f
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.22.f
+DLLs,0
+Forms,0
+Auxiliary Files,1
+C:\Busy\NeHeLessonsIn4th\NeHeLessons\opengllib-1.02.f
+Resources,0
+Docs,0
