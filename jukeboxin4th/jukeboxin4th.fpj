@@ -1,0 +1,53 @@
+ProjectName= Project
+BuildFile= c:\Busy\jukeboxin4th\JukeboxIn4Th.f
+SearchPath= c:\Busy\jukeboxin4th
+Project,0
+Modules,32
+c:\Busy\jukeboxin4th\JukeboxIn4Th.f
+c:\Busy\jukeboxin4th\bmpio.f
+c:\Busy\jukeboxin4th\bmpdot.f
+c:\Busy\jukeboxin4th\Events.f
+c:\Busy\jukeboxin4th\MultiTaskingClass.f
+c:\Busy\jukeboxin4th\mShellRelClass.f
+c:\Busy\jukeboxin4th\ListEditor.f
+c:\Busy\jukeboxin4th\Declared.f
+c:\Busy\jukeboxin4th\InterfacesJB4Th.f
+c:\Busy\jukeboxin4th\DirectShowAudio.f
+c:\Busy\jukeboxin4th\SubDirs2.f
+c:\Busy\jukeboxin4th\Catalog.f
+c:\Busy\jukeboxin4th\Narrator.f
+c:\Busy\jukeboxin4th\SetExecutionState.f
+c:\Busy\jukeboxin4th\AskIntWindow.f
+c:\Busy\jukeboxin4th\Mediatree.f
+c:\Busy\jukeboxin4th\TreeView2.F
+c:\Busy\jukeboxin4th\SearchPath.f
+c:\Busy\jukeboxin4th\ProgresWindow.f
+c:\Busy\jukeboxin4th\NarratorWindow.f
+c:\Busy\jukeboxin4th\CommandID.f
+c:\Busy\jukeboxin4th\InfoForm.f
+c:\Busy\jukeboxin4th\FormWebserverAddress.f
+c:\Busy\jukeboxin4th\FormWiFi.f
+c:\Busy\jukeboxin4th\FilterWindow.f
+c:\Busy\jukeboxin4th\Jukebox4Win.f
+c:\Busy\jukeboxin4th\Middle.f
+c:\Busy\jukeboxin4th\Right.f
+c:\Busy\jukeboxin4th\MenuBar.f
+c:\Busy\jukeboxin4th\Commands.f
+c:\Busy\jukeboxin4th\WebServerCommands.f
+c:\Busy\jukeboxin4th\IpHost.f
+DLLs,0
+Forms,0
+Auxiliary Files,0
+Resources,11
+c:\Busy\jukeboxin4th\First.bmp
+c:\Busy\jukeboxin4th\Up.bmp
+c:\Busy\jukeboxin4th\down.bmp
+c:\Busy\jukeboxin4th\Last.bmp
+c:\Busy\jukeboxin4th\Right.bmp
+c:\Busy\jukeboxin4th\RightUp.bmp
+c:\Busy\jukeboxin4th\RightDown.bmp
+c:\Busy\jukeboxin4th\Left.bmp
+c:\Busy\jukeboxin4th\LeftBelow.bmp
+c:\Busy\jukeboxin4th\Shuffle.bmp
+c:\Busy\jukeboxin4th\Sort.bmp
+Docs,0
