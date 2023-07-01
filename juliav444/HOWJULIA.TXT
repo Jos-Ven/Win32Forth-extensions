@@ -1,0 +1,101 @@
+April 9th, 2012.
+Short manual for Julia V4.41
+
+The program draws various Julia or Mandelbrot fractals and shows its name and
+the elapsed time in the title of the window.
+It works best on a fast PC with a high-resolution graphic card and true-colors.
+
+The Mandelbrot set is the best known example of a fractal.
+It includes smaller versions of itself which can be explored to arbitrary
+levels of detail.
+It was discovered by Benoit B. Mandelbrot who coined the name "fractal"
+in 1975 from the Latin fractus or "to break".
+You can explore all the fractals with the Fractal-walker.
+
+Installation:  Unzip juliav44.zip and start juliav44.exe
+
+Interactions with the Fractal-walker.
+ Choose Julia Walker or Mandelbrot Walker in the menu View
+ At this point you have activated the Fractal-walker.
+
+You can move the fractal or zoom in or out of the fractal by using the following
+cursor keys:
+ - <Up>     Moves the fractal up.
+ - <Down>   Moves the fractal down.
+ - <Left>   Moves the fractal left.
+ - <Right>  Moves the fractal right.
+ - <Shift + Up>    Zooms into the fractal, the fractal is vertical stretched.
+ - <Shift + Down>  Zooms out of the fractal, the fractal is vertical compressed.
+ - <Shift + Left>  Zooms out of the fractal, the fractal is horizontal compressed.
+ - <Shift + Right> Zooms into the fractal, the fractal is horizontal stretched.
+
+Other function keys:
+ - <+>          More details if there are any.
+ - <->          Less details.
+ - <Page Up>    The zoom factor is increased.
+ - <Page Down>  The zoom factor is decreased.
+ - <Home>       Restores the initial fractal.
+
+Other function keys in a mandelbrot only:
+ - <b>          Makes the inside of the fractal black.
+ - <c>          Puts a colored pattern in the inside of the fractal.
+ - <d>          Distorts the fractal. Use it several times.
+ - <e>          Removes the distortion.  Use it several times.
+ - <p>          Puts more patterns in the fractal. Use it several times.
+ - <q>          Removes a pattern from the fractal. Use it several times.
+
+
+<Shift + Right> means keep the key <Shift> pressed and press 1 time
+on the cursor key <Right>.
+
+Press the <+> when you are deep in the fractal and would like to see more
+details in stead of a black screen. Explore the border on the inside between
+a black part and a colored part of a mandelbrot fractal.
+You can also zoom in the part at the left of the mandelbrot fractal.
+
+In the title of the window are the parameters of the mandelbrot fractal
+in the following order:
+left point, right point, top, bottom,
+maximum number of iterations for one pixel (details), and the elapsed time.
+
+Enlarge your window and click with the right button in the window to see them.
+You can press your next function key while plotting is in progress is in
+progress.
+
+You can also resize the window.
+Use a small window on slow computers
+
+Description of the menu JuliaV4.4
+
+1.File
+  File handling for bitmaps and parameters.
+  Notes: 1.Choose parameters in the menu Options to change the size of the bitmap. 
+         2.Swap colors in the menu Options after loading them in the backbuffer.
+2.View
+  Draws a fractal using the current parameters.
+  It includes a random slide show.
+  You can zoom in any part you like.
+
+3.Options
+  For changing the fractal
+
+The program starts after you click with the right button in the window.
+The parameters of the current fractal can be found in the menu Parameters.
+Choose Parameters when you would like to see or experiment with the parameters.
+Disable the fractals you don't want to see.
+
+
+Information about the program:
+==============================
+
+JuliaV4.41 was programmed in Win32Forth version 6.14.
+You can get JuliaV4.41 from the Internet at:
+
+http://home.wxs.nl/~josv
+
+It is there as a turnkey application with its sources.
+
+You are free to explore and use the program JuliaV4.41 in any way you wish.
+
+May the Forth be with you.
+Jos

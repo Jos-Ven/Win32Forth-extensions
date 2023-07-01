@@ -1,0 +1,29 @@
+ProjectName= Julia
+BuildFile= E:\data\Busy\juliav444\Julia_tk.f
+SearchPath= E:\data\Busy\juliav444
+Julia,0
+Modules,14
+E:\data\Busy\juliav444\Julia_tk.f
+E:\data\Busy\juliav444\fmacro.f
+E:\data\Busy\juliav444\toolset.f
+E:\data\Busy\juliav444\MultiTaskingClass.f
+E:\data\Busy\juliav444\SetExecutionState.f
+E:\data\Busy\juliav444\ParallelPlotter.f
+E:\data\Busy\juliav444\bmpdot.f
+E:\data\Busy\juliav444\ColorExtension.f
+E:\data\Busy\juliav444\mandelbr.f
+E:\data\Busy\juliav444\export.f
+E:\data\Busy\juliav444\julia_rc.f
+E:\data\Busy\juliav444\JULIAWIN.f
+E:\data\Busy\juliav444\Juliamenu.f
+E:\data\Busy\juliav444\Juliav442.f
+DLLs,0
+Forms,0
+Auxiliary Files,1
+E:\data\Busy\juliav444\ready.wav
+Resources,2
+E:\data\Busy\juliav444\juliadlg.h
+E:\data\Busy\juliav444\julia.ico
+Docs,2
+E:\data\Busy\juliav444\Version.txt
+E:\data\Busy\juliav444\Howjulia.txt

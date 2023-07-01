@@ -1,0 +1,215 @@
+April 3rd, 2004.
+- Added an auto-installer and and icon for the desktop in dtop_lnk.f
+- Adapted the program for Win32Forth version 6.09.04.
+  It will also run on Win32Forth version 4.2
+
+April 13th, 2003.
+Release information JuliaV4.3:
+- Adapted and optimized for fmacro.f
+  Most fractals are now 3.5 times faster.
+- The fractals Snake and Tentacle are changed
+
+September 10th, 2001.
+Release information JuliaV4.21:
+Changed the format of the file names.
+Now you can also view a number of fractals with
+the menu Play captured frames in the program scene.
+
+
+June 24th, 2001.
+Release information JuliaV4.2:
+New features:
+- swapping colors
+- saving and loading parameters to or from an ini-file.
+- saving a number of slides to several bmp-files and ini-files.
+Saving to a bmp-file is done by redirecting set-dot to a bmp-file.
+It is possible to generate huge bitmaps.
+
+May 24, 1999.
+Release information JuliaV4.1:
+Added a Julia walker.
+The name of the fractal appears in the window title.
+Now you can also zoom into all the Julia fractals.
+It is also possible to increase the number of details of a Julia fractal.
+The zoom level will be used in the random slide show.
+
+Februari 1, 1999.
+Release information JuliaV4.0:
+Made 16777216 colors available in stead of 342 colors.
+All the fractals and the color-system had to be changed.
+Some fractals got an other character.
+The color system does not take significant GDI resources anymore.
+
+The following suggestions came from Bruno Gauthier were changed:
+The millenium-bug in dfact was solved.
+The outerloop of the julia fractal and the mandelbrot were changed.
+
+New words:
++red +blue +red +rgb
+
+
+August 21, 1998.
+Release information JuliaV39:
+fto-cell +fto-cell farray fadump
+
+
+August 21, 1998.
+Release information JuliaV39:
+Added a Mandelbrot fractal with the style of the Tiger on the inside of the
+fractal. You can change the patterns and give the Mandelbrot Fractal a distortion.
+The Mandelbrot-Tiger is added to the random slide show.
+
+Other important improvements:
+- Changed vert_zoom_out to prevent flipping.
+- New function keys
+   <b> Makes the inside of the fractal black.
+   <c> Puts a colored pattern in the inside of the fractal.
+   <d> Distorts the fractal. Use it several times.
+   <e> Removes the distortion.  Use it several times.
+   <p> Puts more patterns in the fractal. Use it several times.
+   <q> Removes a pattern from the fractal. Use it several times.
+- The Parameter windows uses now a resource file.
+- Added the words bit! activate-bit and bit-active?
+
+August 12, 1998.
+Release information JuliaV38:
+Added the classic Mandelbrot fractal.
+The Mandelbrot includes smaller versions of itself which can be explored
+to arbitrary levels of detail.
+
+The formula was ported from a Pascal source and extended with
+a Mandelbrot-walker for walking and zooming.
+It uses floating-point arithmetic to compute a pixel.
+So you can walk quite a long way.
+
+Other improvements:
+- Added +fto
+- Changed the help text and the text files.
+
+August 2, 1998.
+Release information JuliaV37:
+Added 2 plots to the program.
+They use a changed formula of the Julia fractal.
+I call the new plots Snake and Tentacle.
+The new plots are asymmetrical with a certain balance.
+
+Other improvements:
+- Changed random-style for better random styles.
+- Changed sounds into an execution vector
+
+July 12, 1998.
+Release information JuliaV36:
+Changed the anti Julia in the Tiger and in the Cameleon.
+The anti Julia uses more colors and can use the patterns of the Tiger.
+
+Other improvements:
+- Sometimes the popup menu and the window title became black.
+  This bug has again been solved.
+
+June 28, 1998.
+Release information JuliaV35:
+
+The extreme Julia and the Tiger are combined.
+
+Other improvements:
+- Cell-array is easyer to initialize
+- Added +to-cell and cadump
+- Again a better way to handle random styles and colors.
+  The problem here was how to randomsize nonlineair numbers in such a way
+  that the numbers which did not appear many times will appear.
+  The random routine repeats some values more than others.
+  Some values seldom appear.
+  After some time I saw some colors used 6 times while
+  other colors where not used.
+  Solution: keep a tally of the used colors in an other array
+  least-used will search for values which are least used within a certain range.
+- Sometimes the popup menu and the window title became black.
+  This bug has been solved.
+
+
+May 31, 1998.
+Release information JuliaV34:
+
+In the new julia appears a number of different patterns which I can not
+describe to you. I call the new Julia Tiger.
+
+Other improvements:
+- Thanks to Tom Zimmer you can tab trough the dialog window.
+- A better way to handle random styles.
+- Cell-array can handle 0.
+- Changed the Cameleon a bit.
+
+
+May 3, 1998.
+Release information JuliaV33:
+
+I discoverd the cameleon after a few experiments with the innerloop of
+the extreme anti-julia.
+
+It tries to hide it self in the fractal but you can still see it.
+The Anti-julia gets the accent when it is in the picture.
+
+Other improvements:
+- Changed the dialog window.
+- Added PLOT-POINT to graphics.f.
+  PLOT-POINT uses floats to put a pixel somewhere on the screen.
+
+April 30, 1998.
+Release information JuliaV32:
+
+- The random slide show became boring.
+  Solution:
+  1. Made an init-random for a random start.
+  2. Added Julia Fractals in 3 different styles as an execution vector.
+     They are: anti-julia, extreme and anti-julia-and-extreme.
+  3. Changed the parameters.
+  4. A random slide show will now use P1, P2 and the combination of
+     the selected styles from the window parameters.
+
+Note:
+The anti-julia was hidden in the black part of the standard fractal.
+The style extreme puts more colors in one fractal.
+
+Other improvements:
+- I needed color-palette-array again for random execution of an excution vector.
+  color-palette-array was renamed to cell-array in toolset.f
+- It looked like the program became stuck when the window was draged of
+  the screen.
+  Solution: Added WM_MOVE in the JuliaWindow.
+- Solved 2 bugs in fvalue-to-string.
+- Made the edit strings a bit bigger.
+
+April 6th 2003
+- 1.Adapted and optimized for fmacro.f
+- 2.The Snake and the tentacle are changed.
+
+April 9th 2012
+   1) The speed is increased thanks to plotting to a dibsection (under assembler)
+      in stead of using an expensive call to SetPixel
+   2) Now the program will use all the hardware threads of your CPU to make a plot.
+      Each thread handles its own section.
+   The various sections of each thread are visible when you move the plot using the cursor-keys or
+   when you load a complicated example like the MultiEyed fractal. ( Perhaps not when you have a very fast PC )
+   The standard Julia in the previous version with the old SetPixel took 3.396 seconds.
+   The times now are:
+   Using 1 thread  and the new set-mdot: 0.556 second
+   Using 8 threads and the new set-mdot: 0.172 second
+   This program is now 19.74 times faster on my iCore7 using 8 threads.
+   When a better CPU is used with more hardware threads then the program will be faster.
+   3) The Program can be forced to use 1 thread only in the menu Options.
+   4) The number of detected hardware threads in your PC can be seen in
+      the Menu | Options | About the Program
+
+June 15th, 2012.
+  Adapted for the new wTask.
+
+May 9, 2014.
+  Added the option Uninterrupted calculations.
+  Adapted for the new MultiTaskingClass.
+
+September 4, 2016
+  Adapted for Win32Forth version 6.15.04
+
+September 21, 2018
+  Adapted for Win32Forth version 6.15.05
+Jos
