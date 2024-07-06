@@ -264,7 +264,7 @@ ColorObject FrmColor      \ the background color
 ;Object
 
 : AboutMsg ( hOwnerWindow - )
-   >r z" Written by Jos v.d.Ven\n\nin Win32Forth.\n\nVersion: 3.10\n\nhttps://sites.google.com/site/win324th/home"
+   >r z" Written by Jos v.d.Ven\n\nin Win32Forth.\n\nVersion: 4.0\n\nhttps://github.com/Jos-Ven/Win32Forth-extensions"
    z" About the JukeboxIn4Th"
    [ MB_OK MB_ICONINFORMATION or MB_TASKMODAL or ] literal r> MessageBox
    drop

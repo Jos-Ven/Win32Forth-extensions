@@ -65,7 +65,7 @@ load-bitmap _Sort       "Sort.bmp"
 0 value CatalogBusy?
 variable #Done
 
-3243 constant ScaleVol
+5 constant ScaleVol
 
 0 value Busy?
 

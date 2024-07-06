@@ -167,9 +167,9 @@ ColorObject FrmColor      \ the background color
 
 :M DockLeft: { xParent yParent (w) hbParent -- }
                 GetWindowRect: self drop 2 pick  -  dup to (w) ( nW )
-                hbParent yParent   -    ( nH )  2>r
-                2drop  xParent (w) -    ( nX )
-                yParent                 ( nY )
+                hbParent yParent   -      ( nH )  2>r
+                2drop  xParent (w) - 16 + ( nX )
+                yParent                   ( nY )
                 2r>  Move: self
                 ;M
 

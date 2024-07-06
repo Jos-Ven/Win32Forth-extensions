@@ -23,7 +23,7 @@ false value TestingTts
 : StopTestTts ( -- ) false to TestingTts ;
 
 : DoTestTts     ( -- )
-   ( InitDx ) Pausing? not dup
+    Pausing? not dup
       if   true to busy? PausePlay 300 ms
       then
     True to TestingTts  volume@  drop
@@ -35,10 +35,10 @@ false value TestingTts
            until
     ToSay{ s" End of test." }Say \ WaitForTts
     655 / dup volume!
-       if  300 ms RunPlay drop  false to busy?
+       if  300 ms  mp vlc-play
+           false to busy?
        then
  ;
-
 
 : TestTts            ( -- )
      TestingTts
@@ -48,8 +48,6 @@ false value TestingTts
                 then
        then
  ;
-
-
 
 20 constant RangeVolBar
 
@@ -68,7 +66,7 @@ defer ttsVolume!
 
 :Class vTrackBarNum	<super VertTrackBarNum
 
-:M SetVolume:   ( -- )   RangeVolBar   GetValue: Self   - 5 * dup Volume! ;M
+:M SetVolume:   ( -- )   RangeVolBar   GetValue: Self -  5 * dup mp-volume! ;M
 :M WM_LBUTTONUP { --  }  Release: Self   SetVolume: Self   ;M
 :M WM_MOUSEMOVE ( h m w l -- res ) WM_MOUSEMOVE WM: Super  SetVolume: Self ;M
 

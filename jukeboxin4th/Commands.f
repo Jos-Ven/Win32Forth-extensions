@@ -4,21 +4,13 @@ needs CommandID.f
 
 \ Note: A number of options are not used and should be tested before using them.
 
-: check/resize-config-file ( - flag )
-        DatFile$ count file-exist?
-        if   DatFile$ count r/o open-file throw dup file-size throw d>s pad !
-             close-file throw pad @
-             sizeof ConfigDef =
-        else false
-        then check-config unmap-configuration ;
-
 : DoAnnounce ( - )
    busy? not pfilename$ @ 0<> and
      if  true to busy? false to SayNext PausePlay
          h_ev_h_ev_tts_done event-reset
          pfilename$ count 300 ms _Announce
          WaitForTts
-         300 ms RunPlay drop
+         300 ms mp vlc-play
          false to busy?
      then
  ; IDM_DOANNOUNCE SetCommand
@@ -832,7 +824,7 @@ needs CommandID.f
  ;
 
 
-FileNewDialog  NewFileDialog "New filter file"  "Text Files (*.txt)|*.txt|All Files (*.*)|*.*|"
+FileNewDialog  NewFileDialog "NewFilterFile" "Text Files (*.txt)|*.txt|All Files (*.*)|*.*|"
 FileOpenDialog DelFileDialog "Deletefilter"  "Text Files (*.txt)|*.txt|All Files (*.*)|*.*|"
 
 : "file-only"   ( a1 n1 -- a2 n2 )
@@ -870,7 +862,7 @@ FileOpenDialog DelFileDialog "Deletefilter"  "Text Files (*.txt)|*.txt|All Files
        If    GetWindowRect: SplitterWindow 3drop InitFilterWindowWidth <
                if     GetWindowRect: SplitterWindow  2>r
                       InitFilterWindowWidth rot - to xmoved
-                      InitFilterWindowWidth 35 + swap 2r>
+                      InitFilterWindowWidth  35 + swap 2r>
                       >r 2 pick - xmoved + r> 2 pick -  move: SplitterWindow
                then
        Then
@@ -881,7 +873,7 @@ FileOpenDialog DelFileDialog "Deletefilter"  "Text Files (*.txt)|*.txt|All Files
 : NewFilter ( -- )
     GetHandle: SplitterWindow Start: NewFileDialog
     count "minus-ext" "file-only" dup 0=
-          if     2drop DirlistToCmbList1
+          if     drop abort" Filter cancelled"
           else   2dup dup cell+ LOCALALLOC dup>r place
                  temp$ place FilterExtension temp$ +place
                  temp$ count 2dup Newfile abort" Filter not created"
@@ -997,8 +989,6 @@ create tmpfile$ ," 0.tmp"
        then
  ;
 
-
-
 : FindMore ( - )
    RemoveSelection:  TopPane.TextBox1
    GetSelectedString: Middle.CmbListMore
@@ -1011,9 +1001,16 @@ create tmpfile$ ," 0.tmp"
    true Enable: Middle.CmbListMore
  ; ' FindMore is DoCmbListMore
 
+: resume-play ( ms-back - )
+    mp dup
+      if  dup vlc-time@ rot - 0 max over vlc-time! vlc-play
+      then
+ ;
+
+
 : Pause/Resume
    Pausing? dup
-      if    RunPlay   drop
+      if    10 resume-play
       else  PausePlay
       then
    not to Pausing?
@@ -1024,13 +1021,13 @@ string: Lastpfilename$
 0 value  NestingNextRequest?
 
 : (PlayNextRequest  ( - )
-     InitDx  pfilename$ count Play drop
+     pfilename$ vlc-start-play  wait-for-vlc
+     SetPosBar: TopPane
      vadr-config l_Narrator- c@ \ In W7: The TTS works best when the player is paused
-        if 300 ms PausePlay pfilename$ count  Announce WaitForTts 300 ms RunPlay
+        if 300 ms MP VLC-PAUSE   pfilename$ count  Announce WaitForTts 300 ms   MP VLC-PAUSE
         then
      Refocus
      DurationPlay SetRangePosBar: TopPane
-     SetPosBar: TopPane
      false to Pausing?
      #RequestsInFile 1 <= vadr-config Endless- c@ and
          if  WaitState (AddRandomRequests \ ['] (AddRandomRequests Execute: RightPane
@@ -1041,18 +1038,19 @@ string: Lastpfilename$
 : extract-record-playing ( recordAdr - ) RecordPlaying sizeof  RecordDef cmove ;
 
 : PlayNextRequest ( - )
-    HighPrio ExitOnPathError
-    #RequestsInFile 0 > not
-       if  2drop EndPlay 0 pfilename$ ! RecordPlaying sizeof RecordDef erase Paint_TopPane exit then
-    NestingNextRequest? not
-       if   true to NestingNextRequest? WaitState EndPlay
-            0 n>record: Requests dup>r FullPathSong drop 2dup file-exist?
+   HighPrio  ExitOnPathError
+    #RequestsInFile  0 > not
+       if  2drop end-play 0 pfilename$ ! RecordPlaying sizeof RecordDef erase Paint_TopPane exit
+       then
+          NestingNextRequest? not
+            if   true to NestingNextRequest? WaitState
+                 0 n>record: Requests  dup>r FullPathSong    drop 2dup file-exist?
                 if     NoRedrawRw pfilename$ place
                        pfilename$ count Lastpfilename$ place
                        r@ incr-#played r@ to #playing r@ mark-played
                        r> extract-record-playing
                        paint: CoverWindow  Paint: ProgresWindow
-                       vadr-config l_Narrator- c@
+                       end-play vadr-config l_Narrator- c@
                           if    Paint_TopPane
                                 paint: CoverWindow
                                 h_ev_h_ev_tts_done event-reset
@@ -1060,11 +1058,13 @@ string: Lastpfilename$
                                 DeletePlayedRequest RedrawRw
                                 Paint_TopPane
                           else  DeletePlayedRequest RedrawRw Paint_TopPane
-                          then  (PlayNextRequest
+                          then (PlayNextRequest
                 else   r>drop DeletePlayedRequest 2drop ReadyState false to NestingNextRequest?
                 then
        then
  ; IDM_NEXT SetCommand
+
+
 
 : StartInfoForm ( - )
    pfilename$  c@  0>     \ playing ok ?
@@ -1152,24 +1152,24 @@ create _quote$ 1 c, ascii " c,
     ("ExecuteParmShellParm) drop
  ; IDM_Manual SetCommand
 
-: VolChange ( vol - volscaled change )  655 / dup 20 / 1 max ;
+: VolChange ( vol - volscaled change )  ( 650 / ) dup 20 / 1 max ;
 
 : GetVolume/timeOut ( - Volume VolumeChange Volume VolumeChange)
-  100 ms volume@ VolChange
+  100 ms mp-volume@ VolChange
   rot VolChange 2swap
 ;
 
 : DecreaseVolume    ( - ) \ assumes left + right are the same
-   Volume@ drop 650 / locals| oldvol |
+   mp-volume@ drop ( 650 / ) locals| oldvol |
     begin       SetVolBar: TopPane 100 ms
-                oldvol dup 20 / 2 max -  1 max dup to oldvol dup Volume!
+                oldvol dup 20 /  2 max -  1 max dup to oldvol dup mp-Volume!
                 ButtonIn?
      until
  ;
 
 : IncreaseVolume    ( - )
      begin     GetVolume/timeOut 5 max +
-               -rot 5 max + swap Volume! SetVolBar: TopPane
+               -rot 5 max + swap mp-Volume! SetVolBar: TopPane
                ButtonIn?
      until
  ;
@@ -1306,6 +1306,23 @@ create _quote$ 1 c, ascii " c,
 
 0 value LastButton
 
+WinLibrary powrprof.dll
+
+: suspend ( flag  - Err|0) \ True=Hybernate
+   false true rot call SetSuspendState 0=
+    if    GetLastWinErr
+    else  false
+    then
+ ;
+
+: suspend/resume ( - )
+   PausePlay true suspend drop   4 0
+    do  250 ms beep 1000 resume-play mp vlc-state 4 <>
+          if  leave
+          then
+    loop
+ ;
+
 :Noname       (  - )
    NotBusy?
      if  true to busy?
@@ -1319,15 +1336,16 @@ create _quote$ 1 c, ascii " c,
                             JOY_BUTTON4   of   IncreaseVolume                endof
                             JOY_BUTTON5   of   Pause/Resume                  endof
                             JOY_BUTTON6   of   vadr-config EnableShutdown- c@
-                                                  if    beep down
-                                                  then                       endof
+                                                 if  beep suspend/resume
+                                              \  if  beep PausePlay true down drop    \ Or Shutdown?
+                                                      then                  endof
                             JOY_BUTTON7   of  IDM_DOCOVERWINDOW  Docommand   endof
                         endcase
                    else  drop
                    then
             then
      Pausing? not
-       if  PlayReady? #RequestsInFile 0> and  NestingNextRequest? not and
+       if   PlayReady? #RequestsInFile 0> and  NestingNextRequest? not and
              if  IDM_NEXT DoCommand  \ PlayNextRequest
              then
        then
@@ -1371,6 +1389,7 @@ create _quote$ 1 c, ascii " c,
 
 : (StartJukeBoxIn4Th ( - )
    start: Catalog
+   set-vlc-dirs
    below
    0 to Pausing?
    0 to busy? 0 pfilename$ !
@@ -1380,11 +1399,11 @@ create _quote$ 1 c, ascii " c,
    Call InitCommonControls drop
    start: SplitterWindow
    Need-xp-or-better
+   vlc-init
    Start: JukeBoxTasks   \ Need max 8 tasks simultaneously.
    Start:  RightPane
    Start:  WebserverTasks
    Start:  Catalog_iTask
-
    1000 dup Set#Jobs: FileTask              \ Set #jobs
    /FileEntry * malloc to &FileBlock       \ Allocate a string block. One for each used job.
    Start: FileTask
@@ -1413,7 +1432,6 @@ create _quote$ 1 c, ascii " c,
    IsVisible?: SplitterWindow 0=
      if SW_HIDE Show: ProgresWindow Update: ProgresWindow
      then
-
    CreateEvents
 \  Starting the database objects
    Start: Requests
@@ -1428,7 +1446,7 @@ create _quote$ 1 c, ascii " c,
           vadr-config #MaxRndAlbumsReq dup @ 1 max swap !
           vadr-config #MaxRndAlbum dup @ 1 max swap !
           vadr-config #MaxRandom   dup @ 1 max swap !
-    else  RequestIndexFile$ CntDelete
+    else  RequestIndexFile$ CntDelete  \ Initial values
           IndexFile$        CntDelete
           RndIndexFile$     CntDelete
           0   vadr-config #free-list !
@@ -1436,17 +1454,17 @@ create _quote$ 1 c, ascii " c,
           20 vadr-config #MaxRndAlbum !
           7 vadr-config #MaxRndAlbumsReq !
           false vadr-config Album- c!
+          50 vadr-config VlcVolume !
           true to Pausing?
-          50 dup Volume!
           ImportFolder false to pausing?
     then
-   InitDx .Tooltips
+   .Tooltips
    FindFirstJoyStick to IDJoystick drop
    0 120  1 SplitterWindow.hWnd Call SetTimer drop
    0 1000 2 SplitterWindow.hWnd Call SetTimer drop
    ReadyState
+   SetVolBar: TopPane
    THREAD_PRIORITY_NORMAL SetPriority
-\ messageloop
  ;
 
 

@@ -418,7 +418,7 @@ temp$ value prevAlbum$
   HTML| <HTML>  <head> <style> body {line-height: 24px;} </style> </head>| +dstr
  ;
 
-1 value DefaultSelected
+0 value DefaultSelected
 20 value MaxRank
 
 : <BlueInputType ( - )
@@ -612,7 +612,7 @@ temp$ value prevAlbum$
  ;
 
 : send-volume-form  ( $ n  - )
-   volume@ drop ScaleVol / 2/ locals| VolumeAtLevel |
+   mp-volume@ drop ScaleVol / 2/ locals| VolumeAtLevel |
          HtmlBodyFont TopHomePage$+
          HTML| <P> Choose a new level for the volume.| +dstr
          HTML| <FORM ACTION="Win32Forth.gci" >| +dstr crlf$+
@@ -686,7 +686,7 @@ temp$ value prevAlbum$
 : SetVolumeWeb ( string$ cnt - )
     vadr-config AccessLevel c@ Adjust_que >
        if   GetHtmlInputValue
-               if    d>s 10 * dup Volume!  SetVolBar: TopPane
+               if    d>s 10 * dup mp-Volume!  SetVolBar: TopPane
                else  2drop s" <html><strong>Invallid volume value </strong>" type
                then
        then
@@ -781,16 +781,16 @@ temp$ value prevAlbum$
     s" *SearchString1=" FindInDataLine  if  send-tree-for-string     true exit then  2drop
      s" *SearchString=" FindInDataLine  if  send-tree-for-string     true exit then  2drop
        s" *SetRankFor=" FindInDataLine  if  send-rank-form           true exit then  2drop
-           s" *NewRank" FindInDataLine  if  ['] move-to-new-rank LockExecute: RightPane                                                                     true exit then  2drop
-              s" *Next" FindInDataLine  if   PlayNextRequest
+           s" *NewRank" FindInDataLine  if  ['] move-to-new-rank LockExecute: RightPane true exit then  2drop
+              s" *Next" FindInDataLine  if  end-play PlayNextRequest
                                             false to Pausing? send-status  true exit then  2drop
       s" *VolumeValue=" FindInDataLine  if  SetVolumeWeb             true exit then  2drop
            s" *Volume=" FindInDataLine  if  send-volume-form         true exit then  2drop
           s" *Continue" FindInDataLine  if  Pause/Resume send-status true exit then  2drop
                 s" */:" FindInDataLine  if  ListFilter               true exit then  2drop
+            s" *Pc-Off" FindInDataLine  if  suspend/resume           true exit then  2drop
      false
  ;
-
 
 \ doInputData dump
 \ 9FC3194 | 2F 68 6F 6D 65 6A 62 34  74 68 2E 68 74 6D 6C 3F |/homejb4th.html?|

@@ -49,10 +49,10 @@ true value BarUpdate?
 
 :Class TrackBarNum	<super TrackBar   \ To pick one character from the alphabet
 
-: SetPos         ( - ) GetValue: Self  SetPositionsPlay ;
+: SetPos         ( - ) GetValue: Self  SetPositionInPlay ;
 
 : TrackbarStat   ( - SecondsDP MinutesdP SecondsCP MinutesCP  )
-    GetDurationPlay 100NanoSecond>Time
+    GetDurationPlay Seconds>SecondsMinutes
     TrackBarNewPos Seconds>SecondsMinutes
  ;
 
@@ -254,7 +254,6 @@ Font WinFont           \ default font
                 25 8 50 26 Move: Button5
                 Handle: Winfont SetFont: Button5
                 s" Next" SetText: Button5
-
  ;M
 
 
@@ -270,11 +269,11 @@ Font WinFont           \ default font
  ;M
 
 :M SetVolBar:    ( - )
-      RangeVolBar volume@ drop ScaleVol /  -  SetValue: TrackBarVol
+      RangeVolBar mp-volume@  drop ScaleVol /  - SetValue: TrackBarVol
 ;M
 
 :M SetRangePosBar: ( range - )
-    0 swap false SetRange: TrackBarPos
+      0 swap false SetRange: TrackBarPos
 ;M
 
 :M SetPosBar:    ( - )
@@ -536,7 +535,7 @@ SplitterBar SplitterV
         AccelTable EnableAccelerators \ init the accelerator table
         \ prevent flicker in window on sizing
         CS_DBLCLKS GCL_STYLE hWnd  Call SetClassLong  drop
-        self Start: TopPane SetVolBar: TopPane
+        self Start: TopPane
         self Start: CatalogWindow
         self Start: RequestWindow \ BottomRightPane
         self Start: SplitterH
@@ -579,7 +578,7 @@ SplitterBar SplitterV
                 1 hWnd Call KillTimer drop
                 2 hWnd Call KillTimer drop
                 AccelTable DisableAccelerators \ free the accelerator table
-                EndPlay StopDx
+                end-play vlc-instance vlc-free
                 TerminateAllJobs: RightPane
                 TerminateAllJobs: WebserverTasks
                 TerminateAllJobs: Catalog_iTask

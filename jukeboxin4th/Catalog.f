@@ -46,7 +46,7 @@ true value       _DriveType
                 DWORD                   Reserved3
                 DWORD                   Reserved4
                 DWORD                   Reserved5
-                DWORD                   Reserved6
+                DWORD                   VlcVolume
                 2 CELLS       Field:    SourcePathCatalog
                 MAX-PATH 1+   Field:    SearchPathCatalog
                 MAX-PATH 1+   Field:    TextBox1$
@@ -1186,6 +1186,14 @@ NewEditDialog RequestLevelDlg "Request level" "Enter the level to use:" "Ok" "Ca
  ;
 
 previous
+
+: check/resize-config-file ( - flag )
+        DatFile$ count file-exist?
+        if   DatFile$ count r/o open-file throw dup file-size throw d>s pad !
+             close-file throw pad @
+             sizeof ConfigDef =
+        else false
+        then check-config unmap-configuration ;
 
 \s
 

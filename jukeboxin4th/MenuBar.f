@@ -162,7 +162,7 @@ MENUBAR player4-Menu-bar
         MENUSEPARATOR
        :MENUITEM   mNoTooltips  "Disable tooltips"              DoTooltips ;
        :MENUITEM   mJoyStickDisabled "Disable joystick"        NoJoysticks ;
-       :MENUITEM   mEnableShutdown "Enable shutdown from joystick" DoEnableShutdown ;
+       :MENUITEM   mEnableShutdown "Enable suspend from joystick" DoEnableShutdown ;
 
 
     POPUP "&Help"

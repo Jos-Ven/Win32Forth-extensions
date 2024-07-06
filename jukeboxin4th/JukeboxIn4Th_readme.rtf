@@ -1,17 +1,23 @@
-{\rtf1\ansi\ansicpg1252\deff0\deftab709{\fonttbl{\f0\fnil\fcharset0 Courier New;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\froman\fprq2\fcharset0 Times New Roman;}}
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deftab709{\fonttbl{\f0\fnil\fcharset0 Courier New;}{\f1\fmodern\fprq1\fcharset0 Courier New;}{\f2\froman\fprq2\fcharset0 Times New Roman;}}
 {\colortbl ;\red0\green0\blue255;\red0\green77\blue187;}
-{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\nowidctlpar\li284\ri686\lang1033\kerning1\f0\fs20 The \cf1\b JukeboxIn4Th \cf0\b0 is a program that is designed to play music requests \line in a certain order defined by the user or by the build in random traveler.\fs24\par
+{\*\generator Riched20 10.0.22621}\viewkind4\uc1 
+\pard\nowidctlpar\li284\ri686\kerning1\f0\fs20\lang1033 The \cf1\b JukeboxIn4Th \cf0\b0 is a program that is designed to play music requests \line in a certain order defined by the user or by the build in random traveler.\fs24\par
 \fs20 Requests can be added with the buttons in the middle between the two panes or in the web interface.\fs24\par
-\b\fs20\par
+\ul\b\i\fs22 Note\ulnone\b0\i0\fs20 : The JukeboxIn4Th needs at least windows 10 and \b VLC 3.0.20\b0  of {{\field{\*\fldinst{HYPERLINK https://www.videolan.org/vlc }}{\fldrslt{https://www.videolan.org/vlc\ul0\cf0}}}}\f0\fs20\par
+\b\par
 New\b0  in version 3.0: Added a web interface.\par
 Now one or more smartphones, tablets or laptops with WiFi can be used as a remote control for the JukeboxIn4Th. The web interface is a server-side application for the client.\line There is no need for Java.\fs24\par
 \par
-\fs20 The JukeboxIn4Th needs at least windows XP and Directx 8.1.\par
-\par
-\cf1\b Recommended configuration\cf2 :\cf0\b0  Put the music on an USB-drive and use the line-out or S/PDIF outlet to connect your PC to your amplifier.\fs24\par
+\fs20 1-7-2024 New in version 4.0: \par
+- Replaced DirectshowAudio part with the libvlc.dll of VLC \par
+\f1 - Added suspend-PC from a TCP-request or from a Joystick\par
+  Then after logging into the PC the play should resume\par
+\f0\fs24\par
+\fs20\par
+\cf1\b Recommended configuration\cf2 :\cf0\b0  Put the music on an USB-drive and use the HDMI outlet to connect your PC to your amplifier.\fs24\par
 \par
 \cf1\b\fs20 Installation:\cf0\b0\fs24\par
-\fs20 1.\tab Unzip JukeboxIn4Th.zip including the subdirectory somewhere on your hard drive. \fs24\par
+\fs20 1.\tab Unzip JukeboxIn4Th.zip including the subdirectory somewhere on your hard drive. \line Unzip JukeboxIn4Th.zip in ANOTHER directory than the \ldblquote Program Files\b *\b0\rdblquote  directory.\fs24\par
 \fs20 2.\tab Start JukeboxIn4Th.exe.\fs24\par
 \fs20 3.\tab After 2 dialog boxes you are ready and able to travel through your music collection using the random traveler. Just hit the button \b Rnd \b0 as soon as your catalog is filled.\fs24\par
 \par
@@ -31,12 +37,15 @@ Now one or more smartphones, tablets or laptops with WiFi can be used as a remot
 \fs20 3) Change the volume, stop or continue the music.\fs24\par
 \fs20 4) Skip the rest of a song and play the next song in the que,\fs24\par
 \fs20 5) Change the order of songs in the que by using the button before the song.\fs24\par
+
 \pard\nowidctlpar\li284\ri686\qc\par
+
 \pard\nowidctlpar\li284\ri686\fs20 When the JukeboxIn4Th is started the first time the IP-address of your PC will be determined and used in the URL for the home page of the  JukeboxIn4Th. \line The address to the home page can be seen in the menuitem \b Setup webserver address\b0  of the menu \b Webserver\b0  or in the Cover-window when the webserver is enabled.\fs24\par
 \fs20 In the menu \b Webserver\b0  the displayed \b WiFi\b0  information, \b IP-address\b0  and the \b access level\b0  for all users in the webinterface can be seen and changed.\fs24\par
 \fs20 When the webserver is enabled a QR-code will be visible in the cover-window. The QR-code is saved in the file \b QrCode.bmp\b0  and can be changed by using paint. Just save it as a BMP-file with a size of 140x147 pixels. Users can scan the QR-code on their smartphone and then quickly connect to the webserver. On Android smartphones QR-codes can be made and read with the program \b Quick mark\b0 . ( Just search for it in the play Store )\f1\fs24\par
 \par
 \cf1\b\fs20 Features of the JukeboxIn4Th:\cf0\b0\fs24\par
+
 \pard\nowidctlpar\fi-284\li568\ri686\fs20 1.\tab Auto play: Make a shortcut to JukeboxIn4Th.exe in your start folder and tell the shortcut to start \cf1\b JukeboxIn4Th \cf0\b0 minimized. Then the JukeboxIn4Th will start in the tray window and play your requests at the start of your PC.\fs24\par
 \fs20 2.\tab The random traveler will let you enjoy your music that you have not heard or seen for some time.\fs24\par
 \fs20 3.\tab Most controls are in front and easy to use.\fs24\par
@@ -49,15 +58,19 @@ Now one or more smartphones, tablets or laptops with WiFi can be used as a remot
 \fs20 10.An auto-drop-down in the \b More \b0 button ( first button in the middle between the 2 panes ) The drop-down contains the Artist, album and song of the song that is playing, or the song just selected by you. When you click on a line in the drowdown that line will be copied to search string.\fs24\par
 \fs20 11 A combo-list for various filters and a dock-window for a quick pick from a music filter A music filter is a text file containing search strings used for querying (or tagging). A search string may contain 1 or more wild cards, so you can find anything of one artist or album by using only one line. Search strings can be added to a filter.\line New filters can be added from the menu \b File\b0 . Store them in the directory where\f2  \cf1\b\f1 JukeboxIn4Th.exe \cf0\b0 is located. Then they can be opened from the combo-box using the name of \b Filter. \b0 Strings from the button \b More \b0 can be edited and added to the selected filter. The text files can also be edited with notepad. The last character must be an empty line.\fs24\par
 \fs20 12 whole albums can be requested by selecting one album in the left pane and then use the buttons with the arrows in the middle.\fs24\par
-\fs20 13.Using a wireless joystick is quite fun. The following functions \line are available:\line\pard\nowidctlpar\li284\ri686 BUTTON1       Play next request.              \line BUTTON2       Announce the song again.\line BUTTON3       Decrease volume. \line BUTTON4       Increase volume.\line BUTTON5       Pause/Resume. \line BUTTON6       Shutdown.\line BUTTON7       Open or close cover window.\line See the menu \b Options \b0 to activate a number of functions\fs24\par
-\par
-\par
+
+\pard\nowidctlpar\li284\ri686\fs20 13.Using a wireless joystick is quite fun. The following functions \line are available:\line BUTTON1       Play next request.              \line BUTTON2       Announce the song again.\line BUTTON3       Decrease volume. \line BUTTON4       Increase volume.\line BUTTON5       Pause/Resume. \line BUTTON6       Shutdown.\line BUTTON7       Open or close cover window.\line See the menu \b Options \b0 to activate a number of functions\fs24\par
+\fs20 14.Suspend-PC from a TCP-request or from a Joystick.\par
+  Then after logging into the PC the play should resume\par
+\fs24\par
 \cf1\b\fs20 Maintenance:\cf0\b0\fs24\par
 \fs20 JukeboxIn4Th needs links to files on your PC to be able to play.\fs24\par
 \fs20 See the menu \b File \b0 to import links.\fs24\par
 \fs20 Removing files:\fs24\par
+
 \pard\nowidctlpar\li426\ri686\fs20 1. Use the explorer to delete files.\fs24\par
 \fs20 2. Then choose in the menu \b File\b0  for \b Remove dead links.\b0\fs24\par
+
 \pard\nowidctlpar\li284\ri686\fs20 Then all dead links will be removed. Dead links are links to files that are deleted.\fs24\par
 \b\fs20 Note:\b0  When the explorer is started from the \b Infoform\b0  ( Use the Info button to get there ) the explorer will open the directory of the displayed info.\fs24\par
 \par
@@ -75,18 +88,9 @@ Now one or more smartphones, tablets or laptops with WiFi can be used as a remot
 \par
 \fs20 When you choose in the menu \b Options \b0 to activate \b Rnd again before the last request. \b0 JukeboxIn4Th will add new requests when it goes from \b 2\b0  requests left to play to \b 1\b0  request left to play.\line When the check-box between the two panes is activated JukeboxIn4Th\cf1\b  \cf0\b0 will only take random requests from the left pane and not use the entire catalog.\fs24\par
 \par
-\fs20 For some MP3 files: \line From \lang255{\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/ID3"}}{\fldrslt{\ul\cf1 http://en.wikipedia.org/wiki/ID3}}}\lang1033\f1\fs24  Windows Explorer and Windows Media Player cannot handle id3v2 version 2.4 tags in any version, up to and including Windows 7 / \fs20 Windows Media Player 12.[3] Windows can understand id3v2 up to and including version 2.3.\fs24\par
-\par
-\fs20 This may result in error 80040218, no combination of filters could\fs24\par
-\fs20 be found to render the file. The JukeboxIn4Th will skip these files.\fs24\par
-\par
-\fs20 Possible solution: Remove id3v2 Idtags. ID3Remover can do this for you.\fs24\par
-\fs20 See: \lang255{\field{\*\fldinst{HYPERLINK "http://www.marre.org/id3remover"}}{\fldrslt{\ul\cf1 http://www.marre.org/id3remover}}}\lang1033\f1\fs24    \par
-\par
-\par
 \cf1\b\fs20 Removal:\cf0\b0\line Delete the folder of \cf1\b JukeboxIn4Th\cf0\b0 .\fs24\par
 \par
-\cf1\b\fs20 Warnings:\cf0\b0\line Some virus scanners might generate false positives for the program.\fs24\par
+\cf1\b\fs20 Warnings:\cf0\b0\line Some virus scanners will generate false positives for the program.\fs24\par
 \fs20 Make an exception for JukeboxIn4Th, unless you do not trust the program.\fs24\par
 \par
 \fs20 Jos\fs24\par

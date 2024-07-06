@@ -1,30 +1,28 @@
 \ JukeboxIn4Th.f   Version 3.10   March 11th, 2014  By Jos v.d.Ven
 
+0 [if]
+ JukeboxIn4Th.f needs Win32Forth version 6.14 and XP or better with VLC.
+ Install/move the JukeBoxIn4Th directory outside the 'Program Files*' directory.
 
-\ JukeboxIn4Th.f needs Win32Forth version 6.14 and XP or better
-\ It runs best in Windows 7 with an iCore7
+11-3-2014 Added/changed in this version:
+ Adapted for the new MultiTaskingClass.f
+ Made it possible to random complete albums
+ Here it was using DirectshowAudio
 
-\ Added/changed in this version:
-\ Adapted for the new MultiTaskingClass.f
-\ Made it possible to random complete albums
-
-(( From: http://en.wikipedia.org/wiki/ID3
-Windows Explorer and Windows Media Player cannot handle id3v2 version 2.4 tags
-in any version, up to and including Windows 7/Windows Media Player 12.[3]
-Windows can understand id3v2 up to and including version 2.3.
-
-This may result in error 80040218, no combination of filters could
-be found to render the file. The JukeboxIn4Th will skip these files.
-
-Possible solution: Remove id3v2 Idtags. ID3Remover can do this for you.
-See: http://www.marre.org/id3remover   ))
+1-7-2024 Most important changes:
+- The JukeboxIn4Th is now using VLC to solve various errors
+  Last tested with VLC version:3.0.21
+- Added suspend-PC from a TCP-request or from a Joystick
+  Then after logging into the PC the play should resume
 
 
-\ Note: Extra directory levels between Artist and Album returns a wrong artist name.
-\ The right format is I:\Mymusic\Style\Artist\Album\Song.wma
-
+ Note: Extra directory levels between Artist and Album returns a wrong artist name.
+ The right format is I:\Mymusic\Style\Artist\Album\Song.wma
+[then]
 
 [DEFINED] JukeboxIn4Th  [IF]  100 ms bye [then] \ Preventing duplicate loading.
+
+1 value vlc-mode
 
 Anew JukeboxIn4Th
 fpath+ apps\Internet\WebServer
@@ -61,10 +59,11 @@ Needs TrackBar.f
 Needs Volinfo.f
 Needs security.f
 Needs Number.f
-needs fcom.f
-Needs InterfacesJB4Th.f
-Needs DirectShowAudio.f
+Needs fcom.f
+\ Needs InterfacesJB4Th.f
+\ Needs DirectShowAudio.f
 Needs SoundVolume.f
+
 Needs SubDirs2.f
 
 also hidden
@@ -76,6 +75,7 @@ previous
 Needs sock.f
 Needs IpHost.f
 Needs Catalog.f
+Needs Vlc.f
 Needs Narrator.f
 Needs Struct.f
 Needs Joystick.f
@@ -98,13 +98,13 @@ Needs MenuBar.f
 Needs Commands.f
 Needs WebServerCommands.f
 
-: StartJukeBoxIn4Th ( - )
-  (StartJukeBoxIn4Th
-  InitGci
- ;
 
-\   StartJukeBoxIn4Th abort                 \s     Stop here for developments
-\ ' StartJukeBoxIn4Th turnkey JukeBoxIn4Th  \ For a turnkey. ( Smaller, but might trigger a false positive )
+
+: StartJukeBoxIn4Th ( - )
+  (StartJukeBoxIn4Th   InitGci ;
+
+\ StartJukeBoxIn4Th abort                 \s     Stop here for developments
+' StartJukeBoxIn4Th turnkey JukeBoxIn4Th  \ For a turnkey. ( Smaller, but might trigger a false positive )
 
   NoConsoleBoot ' StartJukeBoxIn4Th SAVE JukeBoxIn4Th  \ To prevent a false positive
 
